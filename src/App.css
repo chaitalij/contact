@@ -36,3 +36,35 @@
     transform: rotate(360deg);
   }
 }
+
+.float-class {
+  float: right;
+  padding-top: 64px;
+  width: 80vw;
+}
+
+.tablePaper {
+  width: 100%;
+}
+
+.tableConatiner {
+  max-height: 80vh;
+}
+
+.contact-add-form {
+  width: 50vw;
+  margin: auto;
+  margin-top: 20vh;
+}
+
+.input-class {
+  margin: 20px 20px 0 20px !important;
+}
+
+.add-contact {
+  margin: 20px !important;
+    width: 20vw;
+    height: 6vh;
+    border-radius: 10px !important;
+    
+}
