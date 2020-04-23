@@ -86,27 +86,33 @@ class Contact extends React.Component {
         })
     };
 
-    handleClick = (event) => {
+    handleClick = (event, row) => {
+        console.log("Event", row)
         this.setState({
             anchorEl: event.currentTarget,
-            open: true
+            open: true,
+            selectedRow: row,
+            deleteId: row.id
         })
     }
 
-    handleClose = (e, contact) => {
+    handleClose = (e) => {
         this.setState({
             anchorEl: null,
             open:false
         })
-        if(e.target && e.target.tabIndex === 0) {
+        if(e.target && e.target.id === "edit") {
             this.setState({
-                selectedRow: contact,
                 isEditModalOpen: true
             })
-        } else if(e.target && e.target.tabIndex === -1) {
+        } else if(e.target && e.target.id === "delete") {
             this.setState({
-                deleteId: contact.id,
                 isDeleteModalOpen: true
+            })
+        } else {
+            this.setState({
+                selectedRow: {},
+                deleteId: 0
             })
         }
     }
@@ -162,7 +168,7 @@ class Contact extends React.Component {
                                         aria-label="more"
                                         aria-controls="long-menu"
                                         aria-haspopup="true"
-                                        onClick={this.handleClick}>
+                                        onClick={(e) => this.handleClick(e, row)}>
                                             <MoreVertIcon fontSize="small" />
                                         </IconButton>
                                         <Menu
@@ -178,10 +184,10 @@ class Contact extends React.Component {
                                                 },
                                             }}
                                         >
-                                            <MenuItem key="edit" onClick={(e) => this.handleClose(e,row)}>
+                                            <MenuItem key="edit" onClick={this.handleClose} id="edit">
                                                 Edit
                                             </MenuItem>
-                                            <MenuItem key="delete" onClick={(e) => this.handleClose(e, row)}>
+                                            <MenuItem key="delete" onClick={this.handleClose} id="delete">
                                                 Delete
                                             </MenuItem>
                                         </Menu>

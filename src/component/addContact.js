@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, TextField, Snackbar, Typography } from '@material-ui/core'
+import { Button, TextField, Typography } from '@material-ui/core'
 import { addContact } from '../action/action'
 import { connect } from 'react-redux'
 import browserHistory from '../history'
