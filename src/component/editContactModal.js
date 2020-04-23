@@ -82,7 +82,7 @@ class EditModal extends React.Component {
     }
 
     handlePhnChange = (e) => {
-        if(/^\d{10}$/.test(e.target.value)) {
+        if(/^\d*(?:\.\d{1,2})?$/.test(e.target.value)) {
             this.setState({
                 phnNo: e.target.value
             })
