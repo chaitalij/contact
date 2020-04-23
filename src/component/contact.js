@@ -133,6 +133,7 @@ class Contact extends React.Component {
     }
 
     renderContactList = () => {
+        console.log("ContactList", this.props.contactList)
         return (
             <Paper className="tablePaper">
                 <TableContainer className="tableConatiner">
@@ -151,19 +152,19 @@ class Contact extends React.Component {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {this.state.contactList.slice(this.state.page * this.state.rowsPerPage, this.state.page * this.state.rowsPerPage + this.state.rowsPerPage).map((row) => {
+                            {this.state.contactList.filter(item => item.status == "active").slice(this.state.page * this.state.rowsPerPage, this.state.page * this.state.rowsPerPage + this.state.rowsPerPage).map((row) => {
                                 return (
                                     row.status === "active" ? 
-                                    (<TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                                    (<TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
                                     {columns.map((column) => {
                                         const value = row[column.id];
                                         return (
                                             value ? 
-                                            (<TableCell key={column.id} align={column.align}>
+                                            (<TableCell key={"Menu"+column.id} align={column.align}>
                                                 {value}
                                             </TableCell>) :
                                             (
-                                                <TableCell align="center">
+                                                <TableCell align="center" key={"Menu1"+row.id}>
                                         <IconButton
                                         aria-label="more"
                                         aria-controls="long-menu"
@@ -184,10 +185,10 @@ class Contact extends React.Component {
                                                 },
                                             }}
                                         >
-                                            <MenuItem key="edit" onClick={this.handleClose} id="edit">
+                                            <MenuItem key={"edit"+row.id} onClick={this.handleClose} id="edit">
                                                 Edit
                                             </MenuItem>
-                                            <MenuItem key="delete" onClick={this.handleClose} id="delete">
+                                            <MenuItem key={"delete"+row.id} onClick={this.handleClose} id="delete">
                                                 Delete
                                             </MenuItem>
                                         </Menu>
